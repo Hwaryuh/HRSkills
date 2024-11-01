@@ -1,0 +1,45 @@
+dodge-x: 0.8
+dodge-y: -0.5
+dodge-cooldown: 2500 # ms 단위 (1000 ms = 1 sec)
+evade-damage-time: 700 # ms 단위 (1000 ms = 1 sec)
+max-evade-count: 5
+dodge-stamina-cost: 4
+stamina-regeneration: 1
+stamina-regeneration-rate: 40 # 40틱(2초)마다 1씩 회복
+
+# 무거움 설정 #
+leather: #4
+  helmet: 0.5
+  chestplate: 2.0
+  leggings: 1.0
+  boots: 0.5
+
+chainmail: #8
+  helmet: 2.0
+  chestplate: 3.0
+  leggings: 2.0
+  boots: 1.0
+
+iron: #12
+  helmet: 3.0
+  chestplate: 4.0
+  leggings: 3.0
+  boots: 2.0
+
+golden: #10
+  helmet: 2.0
+  chestplate: 3.0
+  leggings: 3.0
+  boots: 2.0
+
+diamond: #16
+  helmet: 4.0
+  chestplate: 5.0
+  leggings: 4.0
+  boots: 3.0
+
+netherite: #20
+  helmet: 5.0
+  chestplate: 6.0
+  leggings: 5.0
+  boots: 4.0

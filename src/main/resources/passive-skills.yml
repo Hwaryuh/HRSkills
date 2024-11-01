@@ -1,0 +1,17 @@
+classes:
+  assassin:
+    - Misty
+    - Isaac
+  knight:
+    - Beryl
+    - Skadi
+
+assassin:
+  damage-multiplier: 1.5
+  minimum-angle: 90.0
+  behind-attack-sound: minecraft:block_sculk_catalyst_break,1.0,1.2;minecraft:entity_allay_ambient_without_item,0.7,1.5
+
+knight:
+  click-sustain: 300
+  parry-cooldown: 10.0
+  parry-sound: minecraft:block_anvil_place,0.8,1.5

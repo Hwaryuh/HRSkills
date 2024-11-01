@@ -1,0 +1,10 @@
+name: HRSkills
+version: ${version}
+main: kr.hwaryuh.skills.Main
+api-version: '1.20'
+author: useemeonascreen
+commands:
+  hsk:
+permissions:
+  hsk.reload:
+    default: op
