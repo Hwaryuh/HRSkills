@@ -20,7 +20,7 @@ class AssassinPassive(
 
         if (!passiveManager.isAssassin(attacker)) return
 
-        if (shouldMultiplyDamage(attacker, event.entity)) {
+        if (isBehindAttack(attacker, event.entity)) {
             val originalDamage = event.damage
             val multiplier = config.getAssassinBehindAttackMultiplier() - 1.0 // 1.5 -> 0.5
             val additionalDamage = originalDamage * multiplier
@@ -37,7 +37,7 @@ class AssassinPassive(
 
         if (!passiveManager.isAssassin(attacker)) return
 
-        if (shouldMultiplyDamage(attacker, event.target.bukkitEntity)) {
+        if (isBehindAttack(attacker, event.target.bukkitEntity)) {
             val originalDamage = event.damage
             val multiplier = config.getAssassinBehindAttackMultiplier() - 1.0 // 1.5 -> 0.5
             val additionalDamage = originalDamage * multiplier
@@ -47,7 +47,7 @@ class AssassinPassive(
         }
     }
 
-    private fun shouldMultiplyDamage(attacker: Player, target: org.bukkit.entity.Entity): Boolean {
+    private fun isBehindAttack(attacker: Player, target: org.bukkit.entity.Entity): Boolean {
         val targetEyeLocation = target.location.add(0.0, target.height / 2.0, 0.0)
         val attackerEyeLocation = attacker.eyeLocation
         val targetDirection = target.location.direction
