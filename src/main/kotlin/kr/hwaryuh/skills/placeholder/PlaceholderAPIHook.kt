@@ -20,8 +20,8 @@ class PlaceholderAPIHook(private val plugin: Main): PlaceholderExpansion() {
         return when {
             params.lowercase() == "stamina" -> plugin.staminaSystem.getAvailableStamina(player.uniqueId).toString()
             params.lowercase() == "max_stamina" -> "20.0"
-            params.lowercase() == "dodge_cd" -> plugin.dodgeCooldown.getDodgeCD(player.uniqueId).toString()
-            params.lowercase() == "dodge_max_cd" -> plugin.dodgeCooldown.getMaxDodgeCD().toString()
+            params.lowercase() == "dodge_cd" -> plugin.dodgeHandler.getDodgeCD(player.uniqueId).toString()
+            params.lowercase() == "dodge_max_cd" -> plugin.dodgeHandler.getMaxDodgeCD().toString()
             params.lowercase() == "weight" -> plugin.staminaSystem.getWeight(player.player!!).toString()
             params.lowercase() == "max_weight" -> plugin.staminaSystem.getMaxWeight().toString()
 

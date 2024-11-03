@@ -16,10 +16,7 @@ private data class EvadeState(
     var evadedCount: Int = 0
 )
 
-class EvadeListener(
-    private val plugin: Main,
-    private val staminaSystem: StaminaSystem
-) : Listener {
+class EvadeListener(private val plugin: Main, private val staminaSystem: StaminaSystem) : Listener {
     private val evadingPlayers = mutableMapOf<UUID, EvadeState>()
     private val maxEvade: Int
         get() = plugin.dodgeConfig.maxEvadeCount

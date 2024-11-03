@@ -15,13 +15,33 @@ import java.util.concurrent.ConcurrentHashMap
 
 class DodgeHandler(
     private val plugin: Main,
-    private val cooldownManager: DodgeCooldown,
     private val staminaSystem: StaminaSystem
 ) : Listener {
     private val sneakingPlayers = ConcurrentHashMap<UUID, Long>()
     private val jumpingPlayers = ConcurrentHashMap<UUID, JumpRecord>()
+    private val cooldowns = ConcurrentHashMap<UUID, Long>()
 
     data class JumpRecord(val location: Location, val direction: Vector)
+
+    private val dodgeCooldown: Long
+        get() = plugin.dodgeConfig.dodgeCooldown
+
+    fun isOnCooldown(playerUUID: UUID): Boolean {
+        val lastUsedTime = cooldowns[playerUUID] ?: return false
+        return System.currentTimeMillis() - lastUsedTime < dodgeCooldown
+    }
+
+    private fun setCooldown(playerUUID: UUID) {
+        cooldowns[playerUUID] = System.currentTimeMillis()
+    }
+
+    fun getDodgeCD(playerUUID: UUID): Long {
+        val lastUsedTime = cooldowns[playerUUID] ?: return 0L
+        val timePassed = System.currentTimeMillis() - lastUsedTime
+        return if (timePassed >= dodgeCooldown) 0L else dodgeCooldown - timePassed
+    }
+
+    fun getMaxDodgeCD(): Long = dodgeCooldown
 
     @EventHandler
     fun onPlayerToggleSneak(event: PlayerToggleSneakEvent) {
@@ -39,12 +59,12 @@ class DodgeHandler(
         val playerUUID = player.uniqueId
 
         if (!hasRecentlySneaked(playerUUID, 250L)) return
-        if (cooldownManager.isOnCooldown(playerUUID)) return
+        if (isOnCooldown(playerUUID)) return
         if (!staminaSystem.canDodge(playerUUID, plugin.dodgeConfig.dodgeCost)) return
         if (!staminaSystem.useStamina(playerUUID, plugin.dodgeConfig.dodgeCost)) return
 
         recordJump(playerUUID, player.location, player.location.direction)
-        cooldownManager.setCooldown(playerUUID)
+        setCooldown(playerUUID)
 
         plugin.server.scheduler.runTaskLater(plugin, Runnable {
             removeJumpRecord(playerUUID)
@@ -96,5 +116,6 @@ class DodgeHandler(
     fun cleanup() {
         val currentTime = System.currentTimeMillis()
         sneakingPlayers.entries.removeIf { (_, time) -> currentTime - time > 5000 }
+        cooldowns.entries.removeIf { (_, time) -> currentTime - time > dodgeCooldown }
     }
 }

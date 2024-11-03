@@ -18,13 +18,11 @@ import org.bukkit.plugin.java.JavaPlugin
 class Main : JavaPlugin() {
     lateinit var dodgeConfig: DodgeConfig private set
     lateinit var passiveConfig: PassiveConfig private set
-
-    lateinit var dodgeCooldown: DodgeCooldown private set
     lateinit var staminaSystem: StaminaSystem private set
     lateinit var passiveSkillManager: PassiveSkillManager private set
     lateinit var knightPassive: KnightPassive private set
     lateinit var assassinPassive: AssassinPassive private set
-    private lateinit var dodgeHandler: DodgeHandler
+    lateinit var dodgeHandler: DodgeHandler private set
     private lateinit var evadeListener: EvadeListener
 
     companion object {
@@ -41,7 +39,7 @@ class Main : JavaPlugin() {
         initializeComponents()
         registerEventListeners()
 
-        CleanupTask(dodgeHandler, dodgeCooldown, staminaSystem).runTaskTimer(this, 6000L, 6000L) // 5분
+        CleanupTask(dodgeHandler, staminaSystem).runTaskTimer(this, 6000L, 6000L) // 5분
 
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) PlaceholderAPIHook(this).register()
 
@@ -53,10 +51,9 @@ class Main : JavaPlugin() {
     }
 
     private fun initializeComponents() {
-        dodgeCooldown = DodgeCooldown(this)
         staminaSystem = StaminaSystem(this)
         evadeListener = EvadeListener(this, staminaSystem)
-        dodgeHandler = DodgeHandler(this, dodgeCooldown, staminaSystem)
+        dodgeHandler = DodgeHandler(this, staminaSystem)
         knightPassive = KnightPassive(this, passiveSkillManager, passiveConfig)
         assassinPassive = AssassinPassive(passiveSkillManager, passiveConfig)
     }
@@ -78,7 +75,7 @@ class Main : JavaPlugin() {
         HandlerList.unregisterAll(this)
 
         evadeListener = EvadeListener(this, staminaSystem)
-        dodgeHandler = DodgeHandler(this, dodgeCooldown, staminaSystem)
+        dodgeHandler = DodgeHandler(this, staminaSystem)
         assassinPassive = AssassinPassive(passiveSkillManager, passiveConfig)
         knightPassive = KnightPassive(this, passiveSkillManager, passiveConfig)
 
