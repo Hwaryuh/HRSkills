@@ -4,9 +4,9 @@ import kr.hwaryuh.skills.Main
 import net.Indyuce.mmocore.api.player.PlayerData
 import org.bukkit.entity.Player
 import io.lumine.mythic.lib.api.item.NBTItem
-import kr.hwaryuh.skills.config.PassiveConfig
+import kr.hwaryuh.skills.config.AnotherConfig
 
-class PassiveSkillManager(private val plugin: Main, private val config: PassiveConfig) {
+class PassiveSkillManager(private val plugin: Main, private val config: AnotherConfig) {
 
     fun isAssassin(player: Player): Boolean = isClassMatch(player, config.getAssassinClasses())
 

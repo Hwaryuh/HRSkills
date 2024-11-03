@@ -6,11 +6,11 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import io.lumine.mythic.bukkit.events.MythicDamageEvent
-import kr.hwaryuh.skills.config.PassiveConfig
+import kr.hwaryuh.skills.config.AnotherConfig
 
 class AssassinPassive(
     private val passiveManager: PassiveSkillManager,
-    private val config: PassiveConfig
+    private val config: AnotherConfig
 ) : Listener {
 
     @EventHandler

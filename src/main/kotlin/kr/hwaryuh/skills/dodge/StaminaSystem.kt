@@ -4,7 +4,7 @@ import kr.hwaryuh.skills.Main
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.scheduler.BukkitRunnable
-import com.willfp.ecoenchants.enchant.EcoEnchants
+import kr.hwaryuh.skills.enchants.EnchantManager
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
@@ -103,8 +103,7 @@ class StaminaSystem(private val plugin: Main) {
     }
 
     private fun getLightnessLevel(item: ItemStack): Int {
-        val lightnessEnchant = EcoEnchants.getByID("lightness") ?: return 0
-        return item.getEnchantmentLevel(lightnessEnchant.enchantment)
+        return EnchantManager.getEnchantLevel(item, "lightness")
     }
 
     fun cleanup() {

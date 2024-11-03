@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import java.io.File
 
-class PassiveConfig(val plugin: Main) {
+class AnotherConfig(val plugin: Main) {
     private val configFiles = mutableMapOf<String, FileConfiguration>()
 
     data class SoundData(

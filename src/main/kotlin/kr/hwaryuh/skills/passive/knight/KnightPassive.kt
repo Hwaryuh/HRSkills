@@ -1,7 +1,7 @@
 package kr.hwaryuh.skills.passive.knight
 
 import kr.hwaryuh.skills.Main
-import kr.hwaryuh.skills.config.PassiveConfig
+import kr.hwaryuh.skills.config.AnotherConfig
 import kr.hwaryuh.skills.passive.PassiveSkillManager
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -14,7 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 
-class KnightPassive(private val plugin: Main, private val passiveManager: PassiveSkillManager, private val config: PassiveConfig) : Listener {
+class KnightPassive(private val plugin: Main, private val passiveManager: PassiveSkillManager, private val config: AnotherConfig) : Listener {
     private val recentLeftClick = ConcurrentHashMap<UUID, Double>()
     private val parryCooldowns = ConcurrentHashMap<UUID, Double>()
 
