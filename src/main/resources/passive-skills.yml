@@ -13,5 +13,6 @@ assassin:
 
 knight:
   click-sustain: 300
+  parry-angle: 90.0
   parry-cooldown: 10.0
   parry-sound: minecraft:block_anvil_place,0.8,1.5

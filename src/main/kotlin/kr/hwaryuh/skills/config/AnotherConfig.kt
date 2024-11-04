@@ -126,27 +126,18 @@ class AnotherConfig(val plugin: Main) {
         }
     }
 
-    fun getAssassinClasses(): List<String> {
-        return getConfig("passive-skills")?.getStringList("classes.assassin") ?: listOf("Misty", "Isaac")
-    }
+    fun getAssassinClasses(): List<String> = getConfig("passive-skills")?.getStringList("classes.assassin") ?: listOf("Misty", "Isaac")
 
-    fun getKnightClasses(): List<String> {
-        return getConfig("passive-skills")?.getStringList("classes.knight") ?: listOf("Beryl", "Skadi")
-    }
+    fun getKnightClasses(): List<String> = getConfig("passive-skills")?.getStringList("classes.knight") ?: listOf("Beryl", "Skadi")
 
-    fun getAssassinBehindAttackMultiplier(): Double {
-        return getConfig("passive-skills")?.getDouble("assassin.damage-multiplier", 1.5) ?: 1.5
-    }
+    fun getAssassinBehindAttackMultiplier(): Double = getConfig("passive-skills")?.getDouble("assassin.damage-multiplier", 1.5) ?: 1.5
 
-    fun getAssassinBehindAttackAngle(): Double {
-        return getConfig("passive-skills")?.getDouble("assassin.minimum-angle", 90.0) ?: 90.0
-    }
+    fun getAssassinBehindAttackAngle(): Double = getConfig("passive-skills")?.getDouble("assassin.minimum-angle", 90.0) ?: 90.0
 
-    fun getKnightLeftClickSustain(): Long {
-        return getConfig("passive-skills")?.getLong("knight.click-sustain", 300) ?: 300
-    }
+    fun getKnightLeftClickSustain(): Long = getConfig("passive-skills")?.getLong("knight.click-sustain", 300) ?: 300
 
-    fun getKnightParryCooldowns(): Double {
-        return getConfig("passive-skills")?.getDouble("knight.parry-cooldown", 10.0) ?: 10.0
-    }
+    fun getKnightParryAngle(): Double = getConfig("passive-skills")?.getDouble("knight.parry-angle", 90.0) ?: 90.0
+
+    fun getKnightParryCooldowns(): Double = getConfig("passive-skills")?.getDouble("knight.parry-cooldown", 10.0) ?: 10.0
+
 }
